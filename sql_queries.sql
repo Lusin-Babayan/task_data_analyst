@@ -1,7 +1,9 @@
+
+--data were imported into a PostgreSQL database
 --find out people's tendention to bet more if they lose or if they win
-SELECT COUNT("PlayerID") FILTER(WHERE "Net Amount" < 0 AND prev_net_amount IS NOT NULL AND dr > 2) as bet_if_lose,
-COUNT("PlayerID") FILTER(WHERE "Net Amount" = 0 AND prev_net_amount IS NOT NULL AND dr > 2) as bet_if_equal,
-COUNT("PlayerID") FILTER(WHERE "Net Amount" > 0 AND prev_net_amount IS NOT NULL AND dr > 2) as bet_if_win
+SELECT COUNT("PlayerID") FILTER(WHERE "Net Amount" < 0 AND prev_net_amount IS NOT NULL AND dr >= 2) as bet_if_lose,
+COUNT("PlayerID") FILTER(WHERE "Net Amount" = 0 AND prev_net_amount IS NOT NULL AND dr >= 2) as bet_if_equal,
+COUNT("PlayerID") FILTER(WHERE "Net Amount" > 0 AND prev_net_amount IS NOT NULL AND dr >= 2) as bet_if_win
 FROM (
 SELECT
     "PlayerID",
